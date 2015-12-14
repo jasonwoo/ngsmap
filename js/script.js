@@ -33,6 +33,8 @@
   var currRadius = 3;
   mapLink = '<a href="http://www.esri.com/">ESRI</a>';
   creditLink = 'DeLorme, HERE, USGS, Intermap, increment P Corp, TomTom';
+  var proxyUrl = "http://localhost:8888/2015-webdev/ngsmap/proxy.php";
+  var queryUrl = "http://beta.ngs.noaa.gov/controlws";
 
   //ESRI tiles
   var EsriStreet = new L.tileLayer('http://server.arcgisonline.com/arcgis/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}?', {
@@ -218,8 +220,8 @@
     $.ajax({
       type: "GET",
       crossOrigin: true,
-      proxy: "http://localhost:8888/2015-webdev/ngsmap/proxy.php",
-      url: "http://beta.ngs.noaa.gov/controlws/pid?pid=" + val,
+      proxy: proxyUrl,
+      url: queryUrl+"/pid?pid=" + val,
       contentType: "application/json",
       success: function(data)
 
@@ -239,7 +241,7 @@
 
         } else {
           //$("#alertModal").modal('show');
-          console.log('No PID found!');
+          alert('No PID found!');
         }
       },
       error: function(data) {
