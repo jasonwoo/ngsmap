@@ -28,7 +28,7 @@
   });
 
   var center = L.latLng(37.76, -87.33);
-  var marker;
+  var marker, pidmarker;
   var initZoom = 4;
   var currRadius = 3;
   mapLink = '<a href="http://www.esri.com/">ESRI</a>';
@@ -49,10 +49,21 @@
     prefix: 'fa'
   });
 
+  var xMarkerRed = L.AwesomeMarkers.icon({
+    icon: 'times',
+    markerColor: 'darkred',
+    prefix: 'fa'
+  });
+
   marker = L.marker(new L.LatLng(0, 0), {
     draggable: true,
     zIndexOffset: 999,
     icon: xMarker
+  });
+
+  pidmarker = L.marker(new L.LatLng(0, 0), {
+    zIndexOffset: 999,
+    icon: xMarkerRed
   });
 
   //add sidebar
@@ -162,6 +173,11 @@
       $('.leaflet-marker-pane *').not(':first').remove();
       map.removeLayer(marker);
     }
+    if (map.hasLayer(pidmarker)) {
+      $('path').remove();
+      $('.leaflet-marker-pane *').not(':first').remove();
+      map.removeLayer(pidmarker);
+    }
   }
 
   function updateRadius(rad) {
@@ -234,10 +250,10 @@
           pidid = pidattrs[0].pid;
 
           removeMarker();
-          marker.addTo(map);
-          marker.setLatLng([pidlat, pidlon]);
+          pidmarker.addTo(map);
+          pidmarker.setLatLng([pidlat, pidlon]);
           map.panTo([pidlat, pidlon]).setZoom(11);
-          marker.bindPopup('<b>PID:</b> ' + pidid + '<br><b>Lat:</b> ' + pidlat + '<br><b>Lon:</b> ' + pidlon + '<br><b>Name:</b> ' + pidname).openPopup();
+          pidmarker.bindPopup('<b>PID:</b> ' + pidid + '<br><b>Lat:</b> ' + pidlat + '<br><b>Lon:</b> ' + pidlon + '<br><b>Name:</b> ' + pidname).openPopup();
 
         } else {
           //$("#alertModal").modal('show');
