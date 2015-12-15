@@ -454,9 +454,9 @@
 
     //pid search
 
-    $('#pidsearch-label').keydown(function() {
+    $('#pidsearch-label').keydown(function(e) {
 
-      if (event.keyCode == 13) {
+      if (key == 13) {
         $('#pidsearch').submit();
         var pid = $('#pidsearch').val();
 
