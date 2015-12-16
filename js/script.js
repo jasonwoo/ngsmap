@@ -32,14 +32,13 @@
   var initZoom = 4;
   var currRadius = 3;
   mapLink = '<a href="http://www.esri.com/">ESRI</a>';
-  creditLink = 'DeLorme, HERE, USGS, Intermap, increment P Corp, TomTom';
   var proxyUrl = "http://localhost:8888/2015-webdev/ngsmap/proxy.php";
   var queryUrl = "http://beta.ngs.noaa.gov/controlws";
 
   //ESRI tiles
   var EsriStreet = new L.tileLayer('http://server.arcgisonline.com/arcgis/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}?', {
     tms: false,
-    attribution: '&copy; ' + mapLink + ', ' + creditLink
+    attribution: 'Tiles &copy; ' + mapLink
   });
   map.addLayer(EsriStreet).setView(center, initZoom);
 
