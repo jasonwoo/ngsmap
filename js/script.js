@@ -1,4 +1,4 @@
-  //base map w/context menu
+  //base map w/context menu on rclick
   var map = L.map('map', {
     continuousWorld: false,
     noWrap: true,
@@ -42,7 +42,7 @@
   });
   map.addLayer(EsriStreet).setView(center, initZoom);
 
-  var xMarker = L.AwesomeMarkers.icon({
+  var xMarkerBlue = L.AwesomeMarkers.icon({
     icon: 'times',
     markerColor: 'darkblue',
     prefix: 'fa'
@@ -57,7 +57,7 @@
   marker = L.marker(new L.LatLng(0, 0), {
     draggable: true,
     zIndexOffset: 999,
-    icon: xMarker
+    icon: xMarkerBlue
   });
 
   pidmarker = L.marker(new L.LatLng(0, 0), {
@@ -268,7 +268,6 @@
   }
 
   $(document).ready(function() {
-
 
     //jquery checkbox stuff. only allow one active layer at a time
 
